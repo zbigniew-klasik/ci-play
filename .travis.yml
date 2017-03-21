@@ -2,12 +2,9 @@ language: csharp
 solution: src/src.sln
 install:
 - nuget restore src/src.sln
+
 script:
 - xbuild /p:Configuration=Release src/src.sln
-branches:
-  only:
-  - master
-  - develop
 
 notifications:
   email:

@@ -1,15 +1,13 @@
 language: csharp
+
 solution: src/src.sln
+
 install:
 - nuget restore src/src.sln
 
 script:
 - xbuild /p:Configuration=Release src/src.sln
-
-notifications:
-  email:
-    on_success: never
-    on_failure: never
+- src/packages/ILRepack.2.0.12/tools/ILRepack.exe /out:src/MyApp/bin/Release/MyApp.exe src/MyApp/bin/Release/MyApp.exe src/MyApp/bin/Release/MyLib.dll
 
 deploy:
   provider: releases
@@ -20,3 +18,8 @@ deploy:
   on:
     tags: true
     all_branches: true
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never

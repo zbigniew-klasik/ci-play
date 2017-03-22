@@ -6,8 +6,10 @@ install:
 - nuget restore src/src.sln
 
 script:
+- echo $TRAVIS_TAG
+- echo $TRAVIS_BUILD_NUMBER
+- echo $TRAVIS_TAG + '.' + $TRAVIS_BUILD_NUMBER
 - xbuild /p:Configuration=Release src/src.sln
-- chmod a+x src/packages/ILRepack.2.0.12/tools/ILRepack.exe
 - mono src/packages/ILRepack.2.0.12/tools/ILRepack.exe /out:src/MyApp/bin/Release/MyApp.exe src/MyApp/bin/Release/MyApp.exe src/MyApp/bin/Release/MyLib.dll
 
 deploy:

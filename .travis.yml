@@ -6,9 +6,7 @@ install:
 - nuget restore src/src.sln
 
 script:
-- echo $TRAVIS_TAG
-- echo $TRAVIS_BUILD_NUMBER
-- echo $TRAVIS_TAG + '.' + $TRAVIS_BUILD_NUMBER
+- set_assembly_version.sh
 - xbuild /p:Configuration=Release src/src.sln
 - mono src/packages/ILRepack.2.0.12/tools/ILRepack.exe /out:src/MyApp/bin/Release/MyApp.exe src/MyApp/bin/Release/MyApp.exe src/MyApp/bin/Release/MyLib.dll
 
